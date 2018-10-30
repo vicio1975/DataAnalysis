@@ -5,9 +5,10 @@ Created on Fri Nov 10 12:36:50 2017
 @author: vicio
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sea
+#import matplotlib.pyplot as plt
+#import numpy as np
+#import seaborn as sea
+
 #import urllib.request as url
 #data = url.urlretrieve('ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt', "stations.txt")
 file = open("stations.txt", "r")
@@ -18,7 +19,6 @@ def GNS(f):
     for ind,line in enumerate(file):
         if "GSN" in line:
             N += 1
-            #print(ind,"Station -> ",line.split())
             fields = line.split()
             n[fields[0]] = " ".join(fields[4:])
         else:
@@ -30,7 +30,11 @@ def GNS(f):
     
 def findStation(nn):
     found = {cod: name for cod,name in stationNames.items() if nn in name}
-    print(found)
+    print("The station has been found!\n",found)
+    return found
     
 stationNames = GNS(file)    
+station = (input("Insert a station: ")).upper()
+foundStation = findStation(station)
+
 
